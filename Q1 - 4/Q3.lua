@@ -1,10 +1,16 @@
-function do_sth_with_PlayerParty(playerId, membername)
-    player = Player(playerId)
+function removeMemberFromParty(playerId, memberName)
+    local player = player:getPlayer(playerId)
+    if not player then 
+        print ("Error: Player with playerId " .. tostring(playerId) .. "not found")
+        return 
+    end
+
     local party = player:getParty()
     
     for k,v in pairs(party:getMembers()) do
-        if v == Player(membername) then
-            party:removeMember(Player(membername))
+        if v == memberName then
+            party:removeMember(v)
+            break
         end
     end
 end

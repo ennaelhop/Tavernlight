@@ -1,21 +1,25 @@
+#include <memory>
+
 void Game::addItemToPlayer(const std::string& recipient, uint16_t itemId)
 {
-    Player* player = g_game.getPlayerByName(recipient);
-    if (!player) {
-        player = new Player(nullptr);
-        if (!IOLoginData::loadPlayerByName(player, recipient)) {
+    std::unique_ptr<Player> player(g_game.getPlayerByName(recipient));
+    if (!player.get()) {
+        player.reset(new Player(nullptr));
+        
+        if (!IOLoginData::loadPlayerByName(player.get(), recipient)) {
+            player.reset();
             return;
         }
-    }
+    }   
 
-    Item* item = Item::CreateItem(itemId);
-
-    if (!item) {
+    std::unique_ptr<Item> item (Item::CreateItem(itemId));
+    if (!item.get()) {
+        item.reset();
         return;
     }
-
-    g_game.internalAddItem(player->getInbox(), item, INDEX_WHEREEVER, FLAG_NOLIMIT);
     
+    g_game.internalAddItem(player->getInbox(), item.get(), INDEX_WHEREEVER, FLAG_NOLIMIT);
+
     if (player->isOffline()) {
         IOLoginData::savePlayer(player);
     }
