@@ -1,0 +1,9 @@
+Module
+  name: game_jump
+  description: Jump button
+  author: plkee
+  website: https://github.com/edubart/otclient
+  sandboxed: true
+  scripts: [ jump ]
+  @onLoad: init()
+  @onUnload: terminate()
