@@ -182,6 +182,9 @@
 		<vocation name="Druid" />
 		<vocation name="Elder Druid" />
 	</instant>
+		<instant group="attack" spellid="161" name="Tornado Blast" words="frigo" level="1" mana="20" blockwalls="1" premium="0" cooldown="10" groupcooldown="10" needlearn="0" script="attack/tornado_blast.lua">
+		<vocation name="Sorcerer" />
+	</instant>
 	<instant group="attack" spellid="155" name="Ultimate Energy Strike" words="exori max vis" level="100" mana="100" premium="1" range="3" casterTargetOrDirection="1" blockwalls="1" cooldown="30000" groupcooldown="4000" needlearn="0" script="attack/ultimate_energy_strike.lua">
 		<vocation name="Sorcerer" />
 		<vocation name="Master Sorcerer" />
